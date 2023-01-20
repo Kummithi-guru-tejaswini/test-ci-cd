@@ -9,7 +9,7 @@ jobs:
         steps:
             - uses: actions/checkout@v2
             
-            - run: This is first job
+            - run: echo This is first job
 
     test:
         name: Test
@@ -17,4 +17,4 @@ jobs:
         steps:
             - uses: actions/checkout@v2
             
-            - run: This is second job
+            - run: echo This is second job
