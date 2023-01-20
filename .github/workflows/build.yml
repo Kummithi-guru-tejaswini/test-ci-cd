@@ -1,10 +1,29 @@
-name: example
+name: Github Actions CI
 
-on: push
+on: [ pull_request, push ]
 
 jobs:
-  job_1:
-    runs-on: ubuntu-latest
-    steps:
-      - name: My first step
-        run: echo This is the first step of my first job.
+    lint:
+        name: Lint
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - uses: leafo/gh-actions-lua@v8.0.0
+            - uses: leafo/gh-actions-luarocks@v4.0.0
+
+            - run: luarocks install luacheck
+            - run: ./run-linter.sh
+            - run: This is first job
+
+    test:
+        name: Test
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - uses: leafo/gh-actions-lua@v8.0.0
+            - uses: leafo/gh-actions-luarocks@v4.0.0
+
+            - run: luarocks install busted
+            - run: ./build-project.sh
+            - run: ./run-test-suite.sh
+            - run: This is second job
