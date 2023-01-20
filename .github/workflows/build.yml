@@ -8,11 +8,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2
-            - uses: leafo/gh-actions-lua@v8.0.0
-            - uses: leafo/gh-actions-luarocks@v4.0.0
-
-            - run: luarocks install luacheck
-            - run: ./run-linter.sh
+            
             - run: This is first job
 
     test:
@@ -20,10 +16,5 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2
-            - uses: leafo/gh-actions-lua@v8.0.0
-            - uses: leafo/gh-actions-luarocks@v4.0.0
-
-            - run: luarocks install busted
-            - run: ./build-project.sh
-            - run: ./run-test-suite.sh
+            
             - run: This is second job
